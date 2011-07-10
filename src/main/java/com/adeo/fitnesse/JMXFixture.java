@@ -14,9 +14,9 @@ import javax.management.remote.JMXServiceURL;
 
 public class JMXFixture extends fit.Fixture{
 
-	private String hostport = "localhost:10102";
-	private String objectName = "LilyLauncher:name=Launcher";
-	private String operationName = "resetLilyState";
+	private String hostport = null; // sample "localhost:10102";
+	private String objectName = null; // sample "LilyLauncher:name=Launcher";
+	private String operationName = null; // sample "resetLilyState";
 	
 	public boolean callJMXOperation() {
 		
