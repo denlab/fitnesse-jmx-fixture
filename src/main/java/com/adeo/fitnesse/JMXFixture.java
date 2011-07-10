@@ -18,7 +18,7 @@ public class JMXFixture extends fit.Fixture{
 	private String objectName = "LilyLauncher:name=Launcher";
 	private String operationName = "resetLilyState";
 	
-	public Boolean callJMXOperation() {
+	public boolean callJMXOperation() {
 		
 		if(hostport == null || objectName == null || operationName == null) {
 			return false;
