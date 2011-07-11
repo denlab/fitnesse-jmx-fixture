@@ -12,18 +12,67 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
-public class JMXFixture extends fit.Fixture{
+/**
+ * 
+ * Fixture to call from a FitNesse page a JMX MBean operation using RMI. <br/>
+ * <br/>
+ * To use this Fixture you must add the jar file of the project containing this
+ * class in the lib directory of FitNesse. <br/>
+ * <br/>
+ * To generate the jar file from the project, you can use this command: mvn
+ * clean install. Then you will find the jar file in the target directory. <br/>
+ * <br/>
+ * Here a sample code to use it in a FitNesse page: <br/>
+ * <br/>
+ * <code>
+ * !contents <br/>
+ *  <br/>
+ * !path /home/ec2-user/fitnesse/fitnesse.jar <br/>
+ * !path /home/ec2-user/fitnesse/lib/* <br/>
+ *  <br/>
+ * !|ActionFixture| <br/>
+ * |start|com.adeo.fitnesse.JMXFixture| <br/>
+ * |enter|setHostport|localhost:10102| <br/>
+ * |enter|setOperationName|resetLilyState| <br/>
+ * |enter|setObjectName|LilyLauncher:name=Launcher| <br/>
+ * |check|callJMXOperation|true| <br/>
+ * </code>
+ * 
+ * TODO: code review
+ * TODO: manage the returned Object from the JMX Operation call.
+ * 
+ * @author cyrillakech <cyril.lakech@webadeo.net>
+ * 
+ */
+public class JMXFixture extends fit.Fixture {
 
-	private String hostport = null; // sample "localhost:10102";
-	private String objectName = null; // sample "LilyLauncher:name=Launcher";
-	private String operationName = null; // sample "resetLilyState";
-	
+	/**
+	 * the host and the port of the JVM to reach <br/>
+	 * <br/>
+	 * sample "localhost:10102"
+	 */
+	private String hostport = null;
+
+	/**
+	 * the mbean object name to call <br/>
+	 * <br/>
+	 * sample "LilyLauncher:name=Launcher"
+	 */
+	private String objectName = null;
+
+	/**
+	 * the operation name to call <br/>
+	 * <br/>
+	 * sample "resetLilyState"
+	 */
+	private String operationName = null;
+
 	public boolean callJMXOperation() {
-		
-		if(hostport == null || objectName == null || operationName == null) {
+
+		if (hostport == null || objectName == null || operationName == null) {
 			return false;
 		}
-		
+
 		JMXServiceURL url = null;
 		try {
 			url = new JMXServiceURL("service:jmx:rmi://" + hostport
@@ -39,17 +88,18 @@ public class JMXFixture extends fit.Fixture{
 			e.printStackTrace();
 			return false;
 		}
-		
-		if(connector == null){
+
+		if (connector == null) {
 			return false;
 		}
-		
+
 		try {
 			connector.connect();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
+		
 		ObjectName lilyLauncher = null;
 		try {
 			lilyLauncher = new ObjectName(objectName);
@@ -60,6 +110,7 @@ public class JMXFixture extends fit.Fixture{
 			e.printStackTrace();
 			return false;
 		}
+		
 		try {
 			connector.getMBeanServerConnection().invoke(lilyLauncher,
 					operationName, new Object[0], new String[0]);
@@ -76,6 +127,7 @@ public class JMXFixture extends fit.Fixture{
 			e.printStackTrace();
 			return false;
 		}
+		
 		try {
 			connector.close();
 		} catch (IOException e) {
@@ -83,7 +135,7 @@ public class JMXFixture extends fit.Fixture{
 			return false;
 		}
 		return true;
-		
+
 	}
 
 	public String getHostport() {
