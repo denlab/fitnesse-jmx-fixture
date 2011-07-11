@@ -1,13 +1,41 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.adeo.fitnesse</groupId>
-  <artifactId>fitnesse-jmx-fixture</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <dependencies>
-  	<dependency>
-  		<groupId>org.fitnesse</groupId>
-  		<artifactId>fitnesse</artifactId>
-  		<version>20081201</version>
-  	</dependency>
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.adeo.fitnesse</groupId>
+	<artifactId>fitnesse-jmx-fixture</artifactId>
+	<name>Fitnesse JMX Fixture</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Fixture to call a JMX MBean operation using RMI from a FitNesse page. </description>
+	<url>https://github.com/cyrillakech/fitnesse-jmx-fixture</url>
+	<developers>
+		<developer>
+			<id>cyrillakech</id>
+			<name>Cyril Lakech</name>
+			<email>cyril.lakech@gmail.com</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:git@github.com:cyrillakech/fitnesse-jmx-fixture.git</connection>
+		<developerConnection>scm:git:git@github.com:cyrillakech/fitnesse-jmx-fixture.git</developerConnection>
+		<url>git@github.com:cyrillakech/fitnesse-jmx-fixture.git</url>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitnesse</artifactId>
+			<version>20081201</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
