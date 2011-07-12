@@ -25,4 +25,8 @@ Here a sample code to use it in a FitNesse page:
     |check|callJMXOperation|true| 
 
 ## Happy acceptance tests !!!
+
+## License
+
+[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
   
